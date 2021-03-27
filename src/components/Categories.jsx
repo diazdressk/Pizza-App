@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 
 // class Categories extends React.Component {   классовый компонент
 //   state = {
@@ -56,7 +56,7 @@ import React from 'react'
 // }
 
 function Categories({ items }) {
-  const [activeItem, setActiveItem] = React.useState(null);
+  const [activeItem, setActiveItem] = useState(null);
   //state состояние нужно для отслеживания изменений,изначально он null
   //при изменении activeItem(состояния), происходит setActiveItem(рендеринг) 
   const onSelectItem = (index) => {//функция слежения
