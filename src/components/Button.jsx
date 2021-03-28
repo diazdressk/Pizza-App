@@ -15,7 +15,7 @@ const Button = ({ onClick, className, outline, children }) => {
   );
 }
 
-Button.propTypes = {//onClick обязательно функция
+Button.propTypes = {//onClick может быть только функция
   onClick: PropTypes.func,
 };
 

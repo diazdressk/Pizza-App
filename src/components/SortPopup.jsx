@@ -6,7 +6,7 @@ function SortPopup({ items }) {
   const [activeItem, setActiveItem ] = React.useState(0);//0 индекс ПОПУЛЯРНОСТИ
 
   const sortRef = React.useRef();//хранит объект внутри него ссылка на DOM элемент, props, функции и тд подходящим для react способом, в своем свойстве current...всегда хранит актуальное значение на момент вызова функции
-  const activeLabel = items[activeItem];
+  const activeLabel = items[activeItem].name;//после подключ redux,это теперь объект,беру его свойство
   const toggleVisiblePopup = () => {//по производительности лучше создать функцию и отдавать его в компонент,
     //а не вызывать setVisiblePopup в теге...чтобы не пришлось постоянно создавать анонимную функцию там в теге
     //тк такие функции всегда разные
@@ -54,12 +54,12 @@ function SortPopup({ items }) {
         {/* если visiblePopup = true, показывать список */}
           <ul>
             {items && //если items не пустой
-              items.map((name, index) => (
+              items.map((obj, index) => (
                 <li
                   onClick={() => onSelectItem(index) }
                   className={activeItem === index ? 'active' : ''}
-                  key={name}>
-                  {name}
+                  key={obj.type}>
+                  {obj.name}
                 </li>
               ))}
           </ul>
