@@ -53,8 +53,8 @@ function SortPopup({ items }) {
         (<div className="sort__popup">
         {/* если visiblePopup = true, показывать список */}
           <ul>
-            {items && 
-              items.map((name, index) => (//если items не пустой
+            {items && //если items не пустой
+              items.map((name, index) => (
                 <li
                   onClick={() => onSelectItem(index) }
                   className={activeItem === index ? 'active' : ''}
