@@ -20,7 +20,7 @@ function Home({ items }) {
       </div>
       <h2 className="content__title">Все пиццы</h2>
       <div className="content__items">
-        {
+        {items &&//мапить только,если айтемс есть
           items.map(obj => (
           <PizzaBlock key={obj.id} {...obj}/>
           ))//получаю компонент, объкеты Пицц..ключ id,чтобы реакт по нему мог найти какие именно компоненты изменялись

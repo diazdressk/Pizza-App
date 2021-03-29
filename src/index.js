@@ -13,6 +13,8 @@ ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
       <Provider store={store}>
+        {/* провайдер передает стор из редакса в реакт...и теперь App видит,что есть редакс,в нем есть хранилище с данными */}
+        {/* провайдер говорит,что в редаксе есть store,в котором данные,главный редюсер,который работает с ними и тд */}
         <App />
         {/* <Route exact path='/' component={App} />
         <Route exact path='/header' component={Header} /> */}
