@@ -16,9 +16,9 @@ function App() {
   
 
   React.useEffect(() => {
-    axios.get('db.json')
+    axios.get('http://localhost:3001/pizzas')
       .then(({ data }) => {
-        dispatch(setPizzas(data.pizzas));//отправляю data.pizzas в store(хранилище)-редакс,взяв из сервера посредством хука useDispatch()-диспатчера
+        dispatch(setPizzas(data));//отправляю data.pizzas в store(хранилище)-редакс,взяв из сервера посредством хука useDispatch()-диспатчера
       })
   }, []);//рендерится один раз при загрузке
 
