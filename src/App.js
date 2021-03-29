@@ -1,7 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 // import { connect } from 'react-redux';
-import { useSelector, useDispatch } from 'react-redux';
+import { useDispatch } from 'react-redux';
 // import store from './redux/store';
 import { setPizzas } from './redux/actions/pizzas';//переименоываю,чтоб путаться
 import { Route } from 'react-router-dom';
@@ -13,11 +13,7 @@ import { Home, Cart } from './pages';
 function App() {
   
   const dispatch = useDispatch();//хук диспатчер, передает в редакс данные
-  const state = useSelector(({ pizzas }) => {
-    return {
-      items: pizzas.items,
-    }
-  });
+  
 
   React.useEffect(() => {
     axios.get('db.json')
@@ -30,7 +26,7 @@ function App() {
     <div className="wrapper">
       <Header />
       <div className="content">
-        <Route path="/" render={() => <Home items={ state.items }/>} exact />
+        <Route path="/" component={Home} exact />
         {/* render тут,тк передаю компонент,в котором будут элементы и тд */}
         <Route path="/cart" component={Cart} exact />
       </div>

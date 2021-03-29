@@ -1,6 +1,6 @@
 import React from 'react';
 
-function SortPopup({ items }) {
+const SortPopup = React.memo(function SortPopup({ items }) {
   const [visiblePopup, setVisiblePopup ] = React.useState(false);
   //по умолчанию visiblePopup = false; setVisiblePopup -следит за изменением 
   const [activeItem, setActiveItem ] = React.useState(0);//0 индекс ПОПУЛЯРНОСТИ
@@ -66,6 +66,6 @@ function SortPopup({ items }) {
         </div>)}
     </div>
   );
-};
+});
 
 export default SortPopup;
