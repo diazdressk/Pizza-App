@@ -4,7 +4,7 @@ import pizzasReducer from './pizzas';
 
 const rootReducer = combineReducers({//combineReducer объединяет все редюсеры в один
 //rootReducer главный один редюсер
-  filter: filterReducer,
+  filters: filterReducer,
   pizzas: pizzasReducer,
 });
 

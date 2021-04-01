@@ -1,12 +1,12 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
-const SortPopup = React.memo(function SortPopup({ items }) {
+const SortPopup = React.memo(function SortPopup({ items, activeSortType, onClickSortType }) {
   const [visiblePopup, setVisiblePopup ] = React.useState(false);
   //по умолчанию visiblePopup = false; setVisiblePopup -следит за изменением 
-  const [activeItem, setActiveItem ] = React.useState(0);//0 индекс ПОПУЛЯРНОСТИ
 
   const sortRef = React.useRef();//хранит объект внутри него ссылка на DOM элемент, props, функции и тд подходящим для react способом, в своем свойстве current...всегда хранит актуальное значение на момент вызова функции
-  const activeLabel = items[activeItem].name;//после подключ redux,это теперь объект,беру его свойство
+  const activeLabel = items.find(obj => obj.type === activeSortType).name;//выбираю свойство имя из активного объекта
   const toggleVisiblePopup = () => {//по производительности лучше создать функцию и отдавать его в компонент,
     //а не вызывать setVisiblePopup в теге...чтобы не пришлось постоянно создавать анонимную функцию там в теге
     //тк такие функции всегда разные
@@ -14,7 +14,9 @@ const SortPopup = React.memo(function SortPopup({ items }) {
   };
 
   const onSelectItem = (index) => {//функция слежения
-    setActiveItem(index);
+    if (onClickSortType) {
+      onClickSortType(index);
+    }
     //рендеринг будет происходит после изменения index, он тут Состояние
     setVisiblePopup(false);//выбралось что то и закрылся список
   }
@@ -56,9 +58,9 @@ const SortPopup = React.memo(function SortPopup({ items }) {
             {items && //если items не пустой
               items.map((obj, index) => (
                 <li
-                  onClick={() => onSelectItem(index) }
-                  className={activeItem === index ? 'active' : ''}
-                  key={obj.type}>
+                  onClick={() => onSelectItem(obj.type) }
+                  className={activeSortType === obj.type ? 'active' : ''}//исходя из объекта
+                  key={`${obj.type}_${index}`}>
                   {obj.name}
                 </li>
               ))}
@@ -67,5 +69,15 @@ const SortPopup = React.memo(function SortPopup({ items }) {
     </div>
   );
 });
+
+SortPopup.propTypes = {//"типизация обязательная"
+  activeSortType: PropTypes.string.isRequired,//обязательно строка(виды сортировок-попопулярности и тд)
+  items: PropTypes.arrayOf(PropTypes.object).isRequired,//только массив из объектов
+  onClickSortType: PropTypes.func.isRequired
+};
+
+SortPopup.defaultProps = {
+  items: []
+}
 
 export default SortPopup;
