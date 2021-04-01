@@ -10,7 +10,7 @@ const categoryNames = ['Мясные', 'Вегетарианская', 'Грил
 const sortItems = [
   {name: 'популярности', type: 'popular'}, 
   {name: 'цене', type: 'price'}, 
-  {name: 'алфавиту', type: 'alphabet'}
+  {name: 'алфавиту', type: 'name'}
 ];
 
 function Home() {
@@ -21,8 +21,8 @@ function Home() {
   
 
   React.useEffect(() => {//при первом рендере отправляю гетЗапрос
-    dispatch(fetchPizzas());
-  }, [category, sortBy ]);//рендерится в зависимости category, sortBy,useeffect следит за ними
+    dispatch(fetchPizzas(sortBy, category));
+  }, [category, sortBy]);//рендерится в зависимости category, sortBy,useeffect следит за ними
 
 
 

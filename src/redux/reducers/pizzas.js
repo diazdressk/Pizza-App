@@ -20,7 +20,7 @@ const pizzas = (state = initialState, action) => {//это reducer для ред
   
     default:
       return state;//если ничего не меняется,возвращаю пустой массив без пицц
-    };
-  }
+    }
+};
 
 export default pizzas;

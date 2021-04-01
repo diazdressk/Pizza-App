@@ -23,7 +23,7 @@ const Categories = React.memo(function Categories({ activeCategory, items, onCli
 });
 
 Categories.propTypes = {
-  activeCategory: PropTypes.oneOf([PropTypes.number, null]),//либо числа,либо нал
+  // activeCategory: PropTypes.oneOf([PropTypes.number, null]),//либо числа,либо нал
   items: PropTypes.arrayOf(PropTypes.string).isRequired,//только массив из строк('Мясные', 'Вегетарианская' и тд)
   onClickCategory: PropTypes.func.isRequired
 };
