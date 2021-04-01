@@ -10,7 +10,7 @@ const filters = (state = initialState, action) => {//это reducer для ре�
       sortBy: action.payload,
     };
   }
-  if (action.type === 'SET_CATEGORE') {//при вызове dispatch если type будет SET_CATEGORY...изменяю объект,состояние...category на новое значение меняю
+  if (action.type === 'SET_CATEGORY') {//при вызове dispatch если type будет SET_CATEGORY...изменяю объект,состояние...category на новое значение меняю
     return {
       ...state,
       category: action.payload,

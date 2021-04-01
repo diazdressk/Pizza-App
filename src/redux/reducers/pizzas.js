@@ -8,6 +8,7 @@ const pizzas = (state = initialState, action) => {//это reducer для ред
     return {
       ...state,
       items: action.payload,//массив пиц
+      isLoaded: true,//тк пиццы получены с сервера,тру
     };
   }
   return state;//если ничего не меняется,возвращаю пустой массив без пицц

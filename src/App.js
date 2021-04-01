@@ -1,27 +1,13 @@
 import React from 'react';
-import axios from 'axios';
-// import { connect } from 'react-redux';
-import { useDispatch } from 'react-redux';
-// import store from './redux/store';
-import { setPizzas } from './redux/actions/pizzas';//переименоываю,чтоб путаться
+
+
 import { Route } from 'react-router-dom';
 import { Header } from './components';
 import { Home, Cart } from './pages';
 // import pizzas from './redux/reducers/pizzas';
 
 // функциональный компонент редакс через хуки 
-function App() {
-  
-  const dispatch = useDispatch();//хук диспатчер, передает в редакс данные
-  
-
-  React.useEffect(() => {
-    axios.get('http://localhost:3001/pizzas')
-      .then(({ data }) => {
-        dispatch(setPizzas(data));//отправляю data.pizzas в store(хранилище)-редакс,взяв из сервера посредством хука useDispatch()-диспатчера
-      })
-  }, []);//рендерится один раз при загрузке
-
+function App() {//диспачить в редакс изменения
   return (
     <div className="wrapper">
       <Header />

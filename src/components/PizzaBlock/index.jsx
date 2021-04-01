@@ -2,17 +2,23 @@ import React, { useState } from 'react';
 import PropTypes from 'prop-types';
 import classNames from 'classnames';
 
+import LoadingBlock from './LoadingBlock';
+
 function PizzaBlock({ name, imageUrl, price, types, sizes }) {
+
   const availableTypes = ['тонкое', 'традиционное'];
   const availableSizes = [25, 30, 40];
   const [activeType, setActiveType] = useState(types[0]);
   const [activeSize, setActiveSize] = useState(sizes[0]);
+
   const onSelectType = index => {
     setActiveType(index);
   };
   const onSelectSize = index => {
     setActiveSize(index);
   };
+
+  
 
   return (
     <div className="pizza-block">
@@ -87,4 +93,4 @@ PizzaBlock.defaultProps = {
   types: [],//если не указан type, то возвр пустой массив вместо него
 };
 
-export default PizzaBlock
+export default PizzaBlock;
