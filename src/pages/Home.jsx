@@ -22,7 +22,7 @@ function Home() {
 
   React.useEffect(() => {//при первом рендере отправляю гетЗапрос
     dispatch(fetchPizzas());
-  }, [category]);//в зависимости category, теперь он будет следить за ним
+  }, [category, sortBy ]);//рендерится в зависимости category, sortBy,useeffect следит за ними
 
 
 
