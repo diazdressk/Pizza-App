@@ -2,9 +2,9 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Link } from 'react-router-dom'; //компонент Link, запрещает рендерение,а просто переходит
 
-import CartItem from '../components/CartItem';
+import { CartItem, Button } from '../components';
 import emptyPng from '../scss/assets/img/emptyCart.png';
-import { clearCart, removeCartItem } from '../redux/actions/cart';
+import { clearCart, removeCartItem, plusCartItem, minusCartItem } from '../redux/actions/cart';
 
 function Cart() {
   const dispatch = useDispatch();
@@ -26,6 +26,20 @@ function Cart() {
     if (window.confirm('Эта пицца не нужна?')) {
       dispatch(removeCartItem(id));
     }
+  };
+
+  const onPlusItem = (id) => {
+    //увеличиваю пиццы в корзине
+    dispatch(plusCartItem(id));
+  };
+
+  const onMinusItem = (id) => {
+    //уменьшаю пиццы в корзине
+    dispatch(minusCartItem(id));
+  };
+
+  const onClickOrder = () => {
+    console.log('Заказ', items);
   };
 
   return (
@@ -109,6 +123,7 @@ function Cart() {
             <div className="content__items">
               {addedPizzas.map((obj) => (
                 <CartItem
+                  key={obj.id}
                   id={obj.id}
                   name={obj.name}
                   type={obj.type}
@@ -116,6 +131,8 @@ function Cart() {
                   totalPrice={items[obj.id].totalPrice}
                   totalCount={items[obj.id].items.length} //просто длину как колво пицц возьму)
                   onRemove={OnRemoveItem}
+                  onMinus={onMinusItem}
+                  onPlus={onPlusItem}
                 />
                 // items[obj.id].totalPrice из объекта пицц нахожу массив определенной пиццы и у него тоталПрайс забираю
               ))}
@@ -145,12 +162,14 @@ function Cart() {
                       strokeLinejoin="round"
                     />
                   </svg>
-
-                  <span>Вернуться назад</span>
+                  <Link to="/">
+                    {/* перехожу га главную без перезагрузки */}
+                    <span>Вернуться назад</span>
+                  </Link>
                 </a>
-                <div className="button pay-btn">
+                <Button onClick={onClickOrder} className="button pay-btn">
                   <span>Оплатить сейчас</span>
-                </div>
+                </Button>
               </div>
             </div>
           </div>
@@ -158,7 +177,7 @@ function Cart() {
           //иначе это
           <div className="cart cart--empty">
             <h2>
-              Корзина пустая <icon>😕</icon>
+              Корзина пустая <i>😕</i>
             </h2>
             <p>НАПОЛНИ ЕЁ!!!</p>
             <img src={emptyPng} alt="Empty cart" />

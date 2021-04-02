@@ -11,3 +11,13 @@ export const removeCartItem = (id) =>({//удаляю какую-либо пиц
   type: 'REMOVE_CART_ITEM',
   payload: id,
 });
+
+export const plusCartItem = (id) =>({//увеличиваю колво пицц в корзине
+  type: 'PLUS_CART_ITEM',
+  payload: id,
+});
+
+export const minusCartItem = (id) =>({//уменьашаю колво пицц в корзине
+  type: 'MINUS_CART_ITEM',
+  payload: id,
+});
