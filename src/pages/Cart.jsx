@@ -1,10 +1,10 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import {Link} from 'react-router-dom';//компонент Link, запрещает рендерение,а просто переходит
+import { Link } from 'react-router-dom'; //компонент Link, запрещает рендерение,а просто переходит
 
 import CartItem from '../components/CartItem';
 import emptyPng from '../scss/assets/img/emptyCart.png';
-import { clearCart } from '../redux/actions/cart';
+import { clearCart, removeCartItem } from '../redux/actions/cart';
 
 function Cart() {
   const dispatch = useDispatch();
@@ -19,6 +19,12 @@ function Cart() {
     //очищаю корзину,создал метод,чтобы только ссылку передать
     if (window.confirm('Действительно хочешь очистить корзину??')) {
       dispatch(clearCart());
+    }
+  };
+
+  const OnRemoveItem = (id) => {
+    if (window.confirm('Эта пицца не нужна?')) {
+      dispatch(removeCartItem(id));
     }
   };
 
@@ -103,11 +109,13 @@ function Cart() {
             <div className="content__items">
               {addedPizzas.map((obj) => (
                 <CartItem
+                  id={obj.id}
                   name={obj.name}
                   type={obj.type}
                   size={obj.size}
                   totalPrice={items[obj.id].totalPrice}
                   totalCount={items[obj.id].items.length} //просто длину как колво пицц возьму)
+                  onRemove={OnRemoveItem}
                 />
                 // items[obj.id].totalPrice из объекта пицц нахожу массив определенной пиццы и у него тоталПрайс забираю
               ))}
@@ -146,14 +154,13 @@ function Cart() {
               </div>
             </div>
           </div>
-        ) : (//иначе это
+        ) : (
+          //иначе это
           <div className="cart cart--empty">
             <h2>
               Корзина пустая <icon>😕</icon>
             </h2>
-            <p>
-              НАПОЛНИ ЕЁ!!!
-            </p>
+            <p>НАПОЛНИ ЕЁ!!!</p>
             <img src={emptyPng} alt="Empty cart" />
             <Link to="/" className="button button--black">
               {/* перехожу га главную без перезагрузки */}

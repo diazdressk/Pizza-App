@@ -43,6 +43,18 @@ const cart = (state = initialState, action) => {
         totalCount: 0, //колво пицц
       };
     }
+    case 'REMOVE_CART_ITEM': {//удаляю одну пиццу,сколько бы его ни было
+      const newItems = {
+        ...state.items,
+      }
+      const currentTotalPrice = newItems[action.payload].totalPrice;
+      delete newItems[action.payload];//тк неГлубокий объект просто делитом делаю,поверхностно скопировав
+      return {
+        ...state,
+        items: newItems,
+        totalPrice: state.totalPrice - currentTotalPrice,
+      };
+    }
 
     default:
       return state; //если ничего не меняется,возвращаю пустой массив без пицц
