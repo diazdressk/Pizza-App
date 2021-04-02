@@ -13,9 +13,8 @@ export const fetchPizzas = (sortBy, category) => (dispatch) => {
   dispatch(setLoaded(false)); //изначально сетЛодед фолс(payload: false)...чтобы и редакс увидел,обязательно диспачу
   axios
     .get(
-      `http://localhost:3001/pizzas?${
-        category !== null ? `category=${category}` : ''
-      }&_sort=${sortBy}&_order=asc`,
+      //перенаправил аякс запросы в package.json на http://localhost:3001
+      `/pizzas?${category !== null ? `category=${category}` : ''}&_sort=${sortBy}&_order=asc`,
     )
     .then(({ data }) => {
       dispatch(setPizzas(data)); //отправляю data.pizzas в store(хранилище)-редакс,взяв из сервера посредством хука useDispatch()-диспатчера

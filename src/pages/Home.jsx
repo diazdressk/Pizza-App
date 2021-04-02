@@ -60,7 +60,7 @@ function Home() {
                 <PizzaBlock
                   onClickAddPizza={hanndleAddPizzasToCart}
                   key={obj.id}
-                  addedCount={cartItems[obj.id] && cartItems[obj.id].length}
+                  addedCount={cartItems[obj.id] && cartItems[obj.id].items.length}
                   {...obj}
                 />
               )) //получаю компонент, объкеты Пицц..ключ id,чтобы реакт по нему мог найти какие именно компоненты изменялись
