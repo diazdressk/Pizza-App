@@ -26,7 +26,7 @@ const SortPopup = React.memo(function SortPopup({ items, activeSortType, onClick
     if (!path.includes(sortRef.current)) {
       setVisiblePopup(false);
     }
-  };
+  };//закрыть попАп,если кликну не на него
 
   React.useEffect(() => {//следит за изменениями///при каждом рендере любого компонента,он увидит и исходя от этого делаю что-либо...ЕСЛИ ПРОИЗОШЕЛ ЭФФЕКТ-ВЫПОЛНИ МОЁ ТЕЛО...а если укажу ЗАВИСИМОСТЬ в не,то он будет следить только за ним, тут у меня зависимость []...это как addEventListener, вызванный на теге []
     document.body.addEventListener('click', handleOutsideClick);//если нажимаю на бади в любом месте,срабатывает функция handleOutsideClick, которая проверяет есть ли в том месте,на который произошел клик элемент,который хранится в sortRef, если элемент этого нет, то visiblePopup сделай false, а значит закроется окошко со списком

@@ -1,11 +1,13 @@
 import { combineReducers } from 'redux';
-import filterReducer from './filters';
-import pizzasReducer from './pizzas';
+import filters from './filters';
+import pizzas from './pizzas';
+import cart from './cart';
 
 const rootReducer = combineReducers({//combineReducer объединяет все редюсеры в один
 //rootReducer главный один редюсер
-  filters: filterReducer,
-  pizzas: pizzasReducer,
+  filters,
+  pizzas,
+  cart,
 });
 
 export default rootReducer;
