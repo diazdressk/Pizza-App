@@ -4,7 +4,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { Categories, SortPopup, PizzaBlock, PizzaLoadingBlock } from '../components';
 import { setCategory, setSortBy } from '../redux/actions/filters';
 import { fetchPizzas } from '../redux/actions/pizzas';
-import { addPizzasToCart } from '../redux/actions/cart'; //action
+// import { addPizzasToCart } from '../redux/actions/cart'; //action
 
 const categoryNames = ['Мясные', 'Вегетарианская', 'Гриль', 'Острые', 'Закрытые']; //эти данные не буду передавать в редакс,тк они используются только тут,нигде больше не нужны
 const sortItems = [
@@ -23,16 +23,16 @@ function Home() {
   React.useEffect(() => {
     //при первом рендере отправляю гетЗапрос
     dispatch(fetchPizzas(sortBy, category));
-  }, [category, sortBy]); //рендерится в зависимости category, sortBy,useeffect следит за ними
+  }, [category, sortBy, dispatch]); //рендерится в зависимости category, sortBy,useeffect следит за ними
 
   const onSelectCategory = React.useCallback((index) => {
     //создаю тут и буду передавать просто ссылку на неё,чтобы постоянно не перевызывать
     dispatch(setCategory(index));
-  }, []); //мемоизация...только при первом изменении сохранить ссылку,а потом передавать только её,не передавать новые ссылки на функцию,чтобы не произошло обновление
+  }, [dispatch]); //мемоизация...только при первом изменении сохранить ссылку,а потом передавать только её,не передавать новые ссылки на функцию,чтобы не произошло обновление
 
   const onSelectSortType = React.useCallback((type) => {
     dispatch(setSortBy(type));
-  }, []);
+  }, [dispatch]);
 
   const hanndleAddPizzasToCart = (obj) => {
     //при клике Добавить,пицца с выбранными параметрами уйдет в корзину
