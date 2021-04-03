@@ -11,6 +11,16 @@
       "rating": 4
     },
     {
+      "id": 11,
+      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/a010a7d5-52ca-4ea7-81d6-cb9069bb7bba.jpg",
+      "name": "Супермясная",
+      "types": [0, 1],
+      "sizes": [25, 30, 40],
+      "price": 320,
+      "category": 0,
+      "rating": 6
+    },
+    {
       "id": 1,
       "imageUrl": "https://dodopizza.azureedge.net/static/Img/Products/Pizza/ru-RU/2ffc31bb-132c-4c99-b894-53f7107a1441.jpg",
       "name": "Сырная",
@@ -27,7 +37,7 @@
       "types": [0],
       "sizes": [25, 40],
       "price": 295,
-      "category": 1,
+      "category": 4,
       "rating": 4
     },
     {
@@ -99,6 +109,16 @@
       "price": 285,
       "category": 5,
       "rating": 7
+    },
+    {
+      "id": 10,
+      "imageUrl": "https://dodopizza-a.akamaihd.net/static/Img/Products/Pizza/ru-RU/40161bc3-b3d3-40bd-9fb3-2b65a0f9530f.jpg",
+      "name": "Сырный цыпленок",
+      "types": [0, 1],
+      "sizes": [25, 40],
+      "price": 300,
+      "category": 1,
+      "rating": 8
     }
   ]
 }
